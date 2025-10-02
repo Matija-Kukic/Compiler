@@ -1,0 +1,84 @@
+   MOVE 40000, R7
+   CALL f_main
+   HALT
+
+f_c
+   LOAD R0, (R7+04)
+   PUSH R0
+   POP R6
+   ADD R7, 00, R7
+   RET
+f_b
+   LOAD R0, (R7+04)
+   PUSH R0
+   LOAD R0, (R7+08)
+   PUSH R0
+   LOAD R0, (C_0)
+   PUSH R0
+   POP R1
+   POP R0
+   ADD R0, R1, R0
+   PUSH R0
+   CALL f_c
+   ADD R7, 04, R7
+   PUSH R6
+   POP R1
+   POP R0
+   ADD R0, R1, R0
+   PUSH R0
+   POP R6
+   ADD R7, 00, R7
+   RET
+f_a
+   LOAD R0, (R7+04)
+   PUSH R0
+   LOAD R0, (R7+08)
+   PUSH R0
+   LOAD R0, (C_0)
+   PUSH R0
+   POP R1
+   POP R0
+   ADD R0, R1, R0
+   PUSH R0
+   CALL f_b
+   ADD R7, 04, R7
+   PUSH R6
+   POP R1
+   POP R0
+   ADD R0, R1, R0
+   PUSH R0
+   POP R6
+   ADD R7, 00, R7
+   RET
+f_f
+   LOAD R0, (R7+04)
+   PUSH R0
+   LOAD R0, (C_0)
+   PUSH R0
+   POP R1
+   POP R0
+   ADD R0, R1, R0
+   PUSH R0
+   CALL f_a
+   ADD R7, 04, R7
+   PUSH R6
+   LOAD R0, (R7+08)
+   PUSH R0
+   POP R1
+   POP R0
+   ADD R0, R1, R0
+   PUSH R0
+   POP R6
+   ADD R7, 00, R7
+   RET
+f_main
+   LOAD R0, (C_0)
+   PUSH R0
+   CALL f_f
+   ADD R7, 04, R7
+   PUSH R6
+   POP R6
+   ADD R7, 00, R7
+   RET
+C_0    DW %D 1
+   `ORG 1000

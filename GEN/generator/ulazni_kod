@@ -1,0 +1,9 @@
+int main(void) {
+    int x[3]={1,2,3}; 
+    int c;
+    {
+        int a = 21;
+        x[1] = a;
+    }
+    return x[1];
+}
